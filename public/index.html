@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LayRain</title>
+    <link rel="icon" type="image/png" href="./assist/img/logo.svg">
+    <link rel="stylesheet" href="./assist/css/index.css">
+    <style>
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        body {
+            background-image: url('https://cdn.jsdelivr.net/gh/CynaraGroup/PicBed/Cynara/layrainbk.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 黑色蒙版 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        /* 顶栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .navbar-left {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+            color: white;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .like-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .like-button:hover {
+            color: #ff4d4d;
+        }
+        
+        .like-button.active {
+            color: #ff4d4d;
+        }
+        
+        .like-button .heart-fill {
+            display: none;
+        }
+        
+        .like-button.active .heart-outline {
+            display: none;
+        }
+        
+        .like-button.active .heart-fill {
+            display: block;
+        }
+
+        .docs-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sponsor-button {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* 版权信息样式 */
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0);
+            padding: 5px 10px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶栏 -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="./index.html" class="logo">
+                <img src="./assist/img/logo.svg" alt="LayRain Logo" class="logo">
+            </a>
+            <a href="./index.html" class="logo">
+                LayRain
+            </a>
+        </div>
+        <div class="navbar-right">
+            <button class="like-button" id="likeButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path class="heart-outline" d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                    <path class="heart-fill" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg>
+                <span id="likeCount">114514</span>
+            </button>
+            <a href="https://dev.layrain.cynara.my/" class="docs-link">开发者文档</a>
+            <a href="./submit.html" class="docs-link">投稿</a>
+            <a href="https://www.cynara.my/sponsor" class="sponsor-button">赞助</a>
+        </div>
+    </nav>
+
+    <div class="vertical-container">
+        <div class="middle-section">
+            <!-- 中间3/5用『』框起来 -->
+            <div class="boxed-content">
+                <div class="content-box">
+                    <span class="corner top-left">『</span>
+                    <div class="content-area">
+                        <div class="hitokoto-container">
+                            <p id="hitokoto-content">我喜欢你。</p>
+                        </div>
+                    </div>
+                    <span class="corner bottom-right">』</span>
+                    <div class="hitokoto-credit" id="hitokoto-credit">——Sorasaku Yu</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 版权信息 -->
+    <div class="copyright">
+        © 2022-2025 <a href="https://www.cynara.my/" target="_blank">CynaraGroup</a>. All rights reserved.
+    </div>
+
+    <style>
+        .hitokoto-credit {
+            position: absolute;
+            bottom: -30px;
+            right: 10px;
+            color: white;
+            font-size: 16px;
+            opacity: 0.8;
+            font-family: 'SimSun', '宋体', serif;
+        }
+    </style>
+    <script src="./assist/js/index.js"></script>
+</html>

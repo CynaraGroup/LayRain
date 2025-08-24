@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿 - LayRain</title>
+    <link rel="icon" type="image/png" href="./assist/img/logo.svg">
+    <link rel="stylesheet" href="./assist/css/submit.css">
+    <style>
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        body {
+            background-image: url('https://cdn.jsdelivr.net/gh/CynaraGroup/PicBed/Cynara/layrainbk.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 黑色蒙版 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        /* 顶栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .navbar-left {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+            color: white;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* 版权信息样式 */
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0);
+            padding: 5px 10px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 顶栏 -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="./index.html" class="logo">
+                <img src="./assist/img/logo.svg" alt="LayRain Logo" class="logo">
+            </a>
+            <a href="./index.html" class="logo">
+                LayRain
+            </a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://dev.layrain.cynara.my/" class="docs-link">开发者文档</a>
+            <a href="./submit.html" class="nav-link" style="color: #ff4d4d;">投稿</a>
+            <a href="https://www.cynara.my/sponsor" class="nav-link">赞助</a>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <div class="container">
+        <div class="submit-form-container">
+            <h2 class="form-title">一言投稿</h2>
+
+            <!-- 投稿须知 -->
+            <div class="submission-guide">
+                <div class="guide-title" id="guideTitle">
+                    投稿须知
+                    <span id="guideIcon">+</span>
+                </div>
+                <div class="guide-content" id="guideContent">
+                    <ul style="padding-left: 20px;">
+                        <li>投稿内容需积极向上，符合法律法规和公序良俗</li>
+                        <li>一言内容请控制在1-100字之间</li>
+                        <li>请确保投稿内容为原创或已获得授权</li>
+                        <li>涉及引用请注明正确来源</li>
+                        <li>我们保留对投稿内容的审核和修改权利</li>
+                        <li>投稿成功后，内容将在审核通过后展示</li>
+                    </ul>
+                </div>
+            </div>
+
+            <form id="submitForm">
+                <div class="form-group">
+                    <label for="content">一言内容 <span style="color: #ff4d4d;">*</span></label>
+                    <textarea id="content" name="content" class="form-control" placeholder="请输入一言内容（限1-100字）" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">分类 <span style="color: #ff4d4d;">*</span></label>
+                    <select id="category" name="category" class="form-control" required>
+                        <option value="">请选择分类</option>
+                        <option value="love">励志</option>
+                        <option value="friendship">哲学</option>
+                        <option value="life">诗词</option>
+                        <option value="philosophy">影视</option>
+                        <option value="inspiration">来自网络</option>
+                        <option value="literature">原创</option>
+                        <option value="poetry">文学</option>
+                        <option value="game">游戏</option>
+                        <option value="carton">漫画</option>
+                        <option value="anime">动画</option>
+                        <option value="other">其他</option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="author">作者</label>
+                    <input type="text" id="author" name="author" class="form-control" placeholder="请输入作者名称（选填）">
+                </div>
+                <div class="form-group">
+                    <label for="source">来源</label>
+                    <input type="text" id="source" name="source" class="form-control" placeholder="请输入来源（选填）">
+                </div>
+                <button type="submit" class="submit-button">提交投稿</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 版权信息 -->
+    <div class="copyright">
+        © 2022-2025 <a href="https://www.cynara.my/" target="_blank">CynaraGroup</a>. All rights reserved.
+    </div>
+
+    <!-- 成功提示弹窗 -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✧(◍˃̶ᗜ˂̶◍)✩ 投稿成功！</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>您的一言“biu~”的一声发射到宇宙中啦 🌠</p>
+                <p>我们会尽快审核，通过后就能和大家见面咯～</p>
+            </div>
+            <div class="modal-footer">
+                <button class="close-button">知道啦 (≧∇≦)ﾉ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assist/js/submit.js"></script>
+</body>
+</html>

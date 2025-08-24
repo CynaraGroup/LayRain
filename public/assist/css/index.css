@@ -1,0 +1,88 @@
+        /* 纵向三分布局样式 */
+        .vertical-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-section, .middle-section, .bottom-section {
+            flex: 1;
+            position: relative;
+        }
+
+        .middle-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .empty-part {
+            flex: 1;
+        }
+
+        .boxed-content {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content-box {
+            width: 80%;
+            height: 80%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .corner {
+            position: absolute;
+            font-size: 36px;
+            color: white;
+            font-family: serif;
+        }
+
+        .top-left {
+            top: -15px;
+            left: -10px;
+        }
+
+        .bottom-right {
+            bottom: -15px;
+            right: -10px;
+        }
+
+        .content-area {
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 一言内容样式 */
+        .hitokoto-container {
+            text-align: center;
+            color: white;
+            max-width: 80%;
+        }
+
+        #hitokoto-content {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-family: 'SimSun', '宋体', serif;
+        }
+
+        #hitokoto-text {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-family: 'SimSun', '宋体', serif;
+        }
+
+        #hitokoto-source {
+            font-size: 16px;
+            opacity: 0.8;
+            font-style: italic;
+        }
