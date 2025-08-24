@@ -109,7 +109,7 @@ export default defineConfig({
       }
     ],
     footer: {
-        message: '<a href="https://icp.gov.moe/?keyword=20250202">萌ICP备20250202号</a>', 
+        message: '<a href="https://icp.gov.moe/?keyword=20257521">萌ICP备20257521号</a>', 
         copyright: '2025 <a href="https://www.cynara.my">Cynara Group</a>. All rights reserved.' 
     },
   }
