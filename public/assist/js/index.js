@@ -108,10 +108,6 @@
             document.getElementById('likeButton').addEventListener('click', handleLike);
             // 初始化音乐播放器
             initMusicPlayer();
-                // 自动播放音乐（部分浏览器可能需要用户交互）
-                if (typeof playMusic === 'function') {
-                    playMusic();
-                }
         });
         
         // 每5秒自动刷新一言
@@ -410,4 +406,24 @@
 
             // 初始化
             loadLyrics();
+            
+            // 尝试自动播放音乐（需要处理浏览器的自动播放策略）
+            setTimeout(() => {
+                try {
+                    createAudioElement();
+                    if (audioElement) {
+                        // 尝试自动播放，但不强制（符合现代浏览器政策）
+                        audioElement.play().then(() => {
+                            isPlaying = true;
+                            updatePlayButtons(true);
+                            console.log('音乐自动播放成功');
+                        }).catch((error) => {
+                            console.log('自动播放被浏览器阻止，需要用户交互后播放:', error.message);
+                            // 不显示错误提示，这是正常的浏览器行为
+                        });
+                    }
+                } catch (error) {
+                    console.log('自动播放失败:', error.message);
+                }
+            }, 500); // 延迟500ms给页面加载时间
         }
