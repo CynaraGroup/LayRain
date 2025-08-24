@@ -108,6 +108,10 @@
             document.getElementById('likeButton').addEventListener('click', handleLike);
             // 初始化音乐播放器
             initMusicPlayer();
+                // 自动播放音乐（部分浏览器可能需要用户交互）
+                if (typeof playMusic === 'function') {
+                    playMusic();
+                }
         });
         
         // 每5秒自动刷新一言
