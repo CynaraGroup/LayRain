@@ -131,7 +131,7 @@
             // 创建音频元素
             function createAudioElement() {
                 if (!audioElement) {
-                    audioElement = new Audio('./assist/music.mp3');
+                    audioElement = new Audio('./assist/music/music.mp3');
                     audioElement.loop = true; // 循环播放
                     audioElement.volume = volumeSlider.value / 100; // 设置初始音量
                     
