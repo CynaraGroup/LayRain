@@ -118,13 +118,9 @@
             clearInterval(hitokotoInterval);
         });
 
-        // 音乐播放器功能 - 使用Web Audio API生成舒缓的背景音乐
-        // 播放和弦进行，创建环境音乐效果
-        let audioContext = null;
-        let oscillators = [];
-        let gainNode = null;
+        // 音乐播放器功能 - 播放背景音乐文件
+        let audioElement = null;
         let isPlaying = false;
-        let musicPattern = 0;
         
         function initMusicPlayer() {
             const musicToggle = document.getElementById('musicToggle');
@@ -132,106 +128,50 @@
             const pauseIcon = document.getElementById('pauseIcon');
             const volumeSlider = document.getElementById('volumeSlider');
             
-            // 创建音频上下文（用户交互后才能创建）
-            function createAudioContext() {
-                if (!audioContext) {
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    gainNode = audioContext.createGain();
-                    gainNode.connect(audioContext.destination);
-                    gainNode.gain.value = 0.3; // 初始音量
+            // 创建音频元素
+            function createAudioElement() {
+                if (!audioElement) {
+                    audioElement = new Audio('./assist/music.mp3');
+                    audioElement.loop = true; // 循环播放
+                    audioElement.volume = volumeSlider.value / 100; // 设置初始音量
+                    
+                    // 处理音频加载错误
+                    audioElement.addEventListener('error', (e) => {
+                        console.error('音频加载失败:', e);
+                        alert('音频文件加载失败，请检查文件是否存在');
+                    });
+                    
+                    // 音频播放结束事件（虽然设置了loop，但以防万一）
+                    audioElement.addEventListener('ended', () => {
+                        if (isPlaying) {
+                            audioElement.play();
+                        }
+                    });
                 }
             }
             
-            // 播放舒缓的背景音乐（合成音调）
+            // 播放音乐
             function playMusic() {
-                createAudioContext();
+                createAudioElement();
                 
-                stopMusic(); // 停止之前的音乐
-                
-                // 创建多层次的和弦音乐
-                const chordProgression = [
-                    [261.63, 329.63, 392.00], // C大调 (C, E, G)
-                    [293.66, 369.99, 440.00], // D小调 (D, F#, A)
-                    [329.63, 415.30, 493.88], // E小调 (E, G#, B)
-                    [349.23, 440.00, 523.25]  // F大调 (F, A, C)
-                ];
-                
-                let chordIndex = 0;
-                
-                function playChord() {
-                    if (!isPlaying) return;
-                    
-                    const currentChord = chordProgression[chordIndex];
-                    oscillators = [];
-                    
-                    currentChord.forEach((freq, index) => {
-                        const osc = audioContext.createOscillator();
-                        const oscGain = audioContext.createGain();
-                        
-                        osc.type = 'sine';
-                        osc.frequency.setValueAtTime(freq, audioContext.currentTime);
-                        
-                        // 创建音量包络，淡入淡出效果
-                        oscGain.gain.setValueAtTime(0, audioContext.currentTime);
-                        oscGain.gain.exponentialRampToValueAtTime(0.1 * (1 / (index + 1)), audioContext.currentTime + 1);
-                        oscGain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 3.5);
-                        
-                        osc.connect(oscGain);
-                        oscGain.connect(gainNode);
-                        
-                        osc.start();
-                        osc.stop(audioContext.currentTime + 4);
-                        
-                        oscillators.push(osc);
-                    });
-                    
-                    chordIndex = (chordIndex + 1) % chordProgression.length;
-                }
-                
-                // 开始播放
-                isPlaying = true;
-                playChord();
-                
-                // 每4秒播放下一个和弦
-                musicPattern = setInterval(() => {
-                    if (isPlaying) {
-                        playChord();
-                    }
-                }, 4000);
-                
-                playIcon.style.display = 'none';
-                pauseIcon.style.display = 'block';
-                musicToggle.classList.add('playing');
+                audioElement.play().then(() => {
+                    isPlaying = true;
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                    musicToggle.classList.add('playing');
+                }).catch((error) => {
+                    console.error('音频播放失败:', error);
+                    alert('音频播放失败，请重试');
+                });
             }
             
             function stopMusic() {
+                if (audioElement) {
+                    audioElement.pause();
+                    audioElement.currentTime = 0; // 重置播放位置
+                }
+                
                 isPlaying = false;
-                
-                if (musicPattern) {
-                    clearInterval(musicPattern);
-                    musicPattern = 0;
-                }
-                
-                // 淡出所有振荡器
-                if (gainNode && audioContext) {
-                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
-                    
-                    setTimeout(() => {
-                        oscillators.forEach(osc => {
-                            try {
-                                osc.stop();
-                            } catch (e) {
-                                // 振荡器可能已经停止
-                            }
-                        });
-                        oscillators = [];
-                        
-                        if (gainNode) {
-                            gainNode.gain.value = volumeSlider.value / 100;
-                        }
-                    }, 500);
-                }
-                
                 playIcon.style.display = 'block';
                 pauseIcon.style.display = 'none';
                 musicToggle.classList.remove('playing');
@@ -247,14 +187,14 @@
                     }
                 } catch (error) {
                     console.error('音频播放错误:', error);
-                    alert('音频播放失败，可能是浏览器不支持Web Audio API');
+                    alert('音频播放失败，请重试');
                 }
             });
             
             // 音量控制
             volumeSlider.addEventListener('input', (e) => {
-                if (gainNode) {
-                    gainNode.gain.value = e.target.value / 100;
+                if (audioElement) {
+                    audioElement.volume = e.target.value / 100;
                 }
             });
         }
