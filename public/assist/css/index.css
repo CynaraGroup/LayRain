@@ -86,3 +86,15 @@
             opacity: 0.8;
             font-style: italic;
         }
+        /* 版权信息样式 */
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0);
+            padding: 5px 10px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+        }
