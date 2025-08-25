@@ -20,12 +20,24 @@
 
 |参数|类型|值|说明|
 |---|---|---|---|
-|/api/hitokoto/category|string|励志 哲学 诗词 影视 来自网络 原创 文学游戏 漫画 动画 其他|根据标签获取一言|
+|/api/hitokoto/category|string|见后文|根据标签获取一言|
 |/api/hitokoto/|| |随机获取一言|
 |/api/hitokoto/|int|1到∞|根据 ID 获取指定一言|
 |/api/hitokoto/list|| |获取一言列表|
 |/api/categories|||获取分类列表|
 
+|参数|说明|
+|---|---|
+|i|励志|
+|pl|哲学|
+|p|诗词|
+|f|影视|
+|w|来自网络|
+|o|原创|
+|l|文学|
+|g|游戏|
+|c|漫画|
+|a|动画|
 
 ## 返回信息
 ``` json
