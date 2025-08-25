@@ -82,6 +82,7 @@ export default defineConfig({
       { text: '雷语相关', items:[
           { text: '主站', link: 'https://layrain.cynara.my'},
           { text: 'Cynara', link: 'https://www.cynara.my' },
+          { text: 'QQ群', link: 'https://qm.qq.com/q/hmhimw0dpY' },
         ]
       },
     ],

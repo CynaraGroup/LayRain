@@ -12,8 +12,8 @@ hero:
       text: 快速开始
       link: /introduce
     - theme: alt
-      text: Github
-      link: https://github.com/CynaraGroup
+      text: QQ
+      link: https://qm.qq.com/q/hmhimw0dpY
   image: 'https://layrain.cynara.my/assist/img/logo.svg'
 
 features:
@@ -24,7 +24,7 @@ features:
   - icon: '👥'
     title: 强大社区支持
     details: 众多用户在此反馈问题,得到及时解决。
-    link: https://qm.qq.com/q/EVeDznsBwW
+    link: https://qm.qq.com/q/hmhimw0dpY
   - icon: '🔓'
     title: 开源免费
     details: Cynara是一家非盈利的开源产品工作室,我们的产品全栈开源。
