@@ -70,6 +70,11 @@ export default defineConfig({
     },
   themeConfig: {
     logo: 'https://layrain.cynara.my/assist/img/logo.svg',
+    //编辑本页
+    editLink: { 
+      pattern: 'https://github.com/CynaraGroup/LayRain/edit/master/docs/docs/:path', // 改成自己的仓库
+      text: '在GitHub编辑本页'
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/' },
