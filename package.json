@@ -1,0 +1,15 @@
+{
+  "name": "layrain-api",
+  "version": "1.0.0",
+  "description": "Hitokoto API using Node.js and PostgreSQL",
+  "main": "src/api.js",
+  "scripts": {
+    "start": "node src/api.js",
+    "dev": "node src/api.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "pg": "^8.11.0",
+    "cors": "^2.8.5"
+  }
+}
