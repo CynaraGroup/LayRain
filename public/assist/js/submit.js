@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 try {
                     // 发送投稿数据到API
-                    const response = await fetch('https://alayrain.zhngjah.space:2096/api/hitokoto', {
+                    const response = await fetch('http://oss.sorasaku.vip:2095/api/hitokoto', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

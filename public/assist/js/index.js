@@ -3,7 +3,7 @@
             try {
                 // 添加随机参数防止缓存
                 const timestamp = new Date().getTime();
-                const response = await fetch(`https://alayrain.zhngjah.space:2096/api/hitokoto?t=${timestamp}`);
+                const response = await fetch(`http://oss.sorasaku.vip:2095/api/hitokoto?t=${timestamp}`);
                 if (!response.ok) {
                     throw new Error('网络响应异常');
                 }
@@ -57,7 +57,7 @@
         // 获取点赞数
         async function fetchLikeCount(hitokotoId) {
             try {
-                const response = await fetch(`https://alayrain.zhngjah.space:2096/api/hitokoto/${hitokotoId}/like/count`);
+                const response = await fetch(`http://oss.sorasaku.vip:2095/api/hitokoto/${hitokotoId}/like/count`);
                 if (!response.ok) {
                     throw new Error('获取点赞数失败');
                 }
@@ -80,7 +80,7 @@
             }
             
             try {
-                const response = await fetch(`https://alayrain.zhngjah.space:2096/api/hitokoto/${hitokotoId}/like`, {
+                const response = await fetch(`http://oss.sorasaku.vip:2095/api/hitokoto/${hitokotoId}/like`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
